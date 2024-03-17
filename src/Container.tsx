@@ -54,8 +54,6 @@ export default function ResponsiveDrawer() {
           "Nāṉ Ār? (Who am I?)",
           "Upadēśa Undiyār (The Essence of Spiritual Instructions)",
           "Uḷḷadu Nāṟpadu (Forty Verses on What Exists)",
-          "Uḷḷadu Nāṟpadu (Forty Verses on What Exists)",
-          "Uḷḷadu Nāṟpadu (Forty Verses on What Exists)",
         ].map((text) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
