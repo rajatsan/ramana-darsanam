@@ -51,4 +51,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Deployment
 
-- Run `npm run deploy`
+- Changes to be commited in `main` branch.
+- Run `npm run deploy` to deploy distributable version of the code to prod, in the `gh-pages` branch.
