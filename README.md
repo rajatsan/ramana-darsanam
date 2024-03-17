@@ -48,3 +48,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Dev setup
 
 - Setup prettier in your editor: https://prettier.io/docs/en/editors. Configure Format On Save to true in your editor.
+
+## Deployment
+
+- Run `npm run deploy`
