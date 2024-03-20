@@ -25,7 +25,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-localhost": "PUBLIC_URL=/ react-scripts start",
     "build": "react-scripts build",
+    "build-localhost": "PUBLIC_URL=/ react-scripts build",
     "test": "echo notests",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

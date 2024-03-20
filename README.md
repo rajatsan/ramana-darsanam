@@ -48,6 +48,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Dev setup
 
 - Setup prettier in your editor: https://prettier.io/docs/en/editors. Configure Format On Save to true in your editor.
+- To run locally, run `npm run start-localhost` (this is because of the "homepage" attribute present in package.json)
 
 ## Deployment
 
