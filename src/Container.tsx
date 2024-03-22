@@ -151,7 +151,10 @@ export default function ResponsiveDrawer() {
         }}
       >
         <Toolbar />
-        <Page pageTitle="Nan Yar" contentPath="collected_works/nan_yar" />
+        <Page
+          pageTitle="Nāṉ Ār? (Who am I?)"
+          contentPath="collected_works/nan_yar"
+        />
       </Box>
     </Box>
   );
