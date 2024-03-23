@@ -1,7 +1,6 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -24,11 +23,22 @@ const drawerWidth = 240;
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [width, setWidth] = React.useState<number>(window.innerWidth); // TODO move to react app context
+  const isMobile = width <= 768;
 
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
   };
+
+  const handleWindowSizeChange = () => setWidth(window.innerWidth);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   const handleDrawerTransitionEnd = () => {
     setIsClosing(false);
@@ -82,8 +92,8 @@ export default function ResponsiveDrawer() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar
+        enableColorOnDark
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -101,7 +111,7 @@ export default function ResponsiveDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Sri Ramana Teachings
+            SRI RAMANA TEACHINGS
           </Typography>
         </Toolbar>
       </AppBar>
@@ -146,14 +156,15 @@ export default function ResponsiveDrawer() {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          padding: isMobile ? 0 : 2,
+          paddingTop: 2,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />
         <Page
           pageTitle="Nāṉ Ār? (Who am I?)"
-          contentPath="collected_works/nan_yar"
+          pageDataPath="collected_works/nan_yar.json"
         />
       </Box>
     </Box>

@@ -5,15 +5,21 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Container from "./Container";
 
-const darkTheme = createTheme({
+const theme = createTheme({
   palette: {
     mode: "dark",
+    primary: {
+      main: "#1a237e",
+    },
+    secondary: {
+      main: "#ff8f00",
+    },
   },
 });
 
 function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
         <Container />

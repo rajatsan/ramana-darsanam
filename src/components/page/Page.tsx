@@ -10,7 +10,7 @@ import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 
 interface PageProps {
-  contentPath: string;
+  pageDataPath: string;
   pageTitle: string;
 }
 
@@ -21,34 +21,33 @@ interface SectionData {
   sectionTitle: string;
 }
 
+interface PageData {
+  sections: SectionData[];
+}
+
+// TODO
+// 1. Load all json files into single file
+// 2. Accordion for Tamil text
+// 3. Render HTML inside section
+
 export default function Page(props: PageProps) {
-  const [sectionsData, setSectionsData] = useState<SectionData[]>([]);
+  const [pageData, setPageData] = useState<PageData | undefined>(undefined);
 
   useEffect(() => {
-    fetchAllSectionsData();
+    fetchPageData();
   }, []);
 
-  const fetchAllSectionsData = async () => {
-    const sections: SectionData[] = [];
-    for (let currSectionIndex = 1; ; currSectionIndex++) {
-      try {
-        const sectionData = await fetch(
-          `${props.contentPath}/${currSectionIndex}.json`,
-        );
-        sections.push(await sectionData.json());
-      } catch (e) {
-        break;
-      }
-    }
-    setSectionsData(sections);
+  const fetchPageData = async () => {
+    const pageData = await fetch(`${props.pageDataPath}`);
+    setPageData(await pageData.json());
   };
 
   const renderSections = () => {
-    return sectionsData.map((sectionData, idx) => {
+    return pageData?.sections?.map((sectionData, idx) => {
       return (
         <Card sx={{ marginBottom: 2 }} key={idx}>
           <CardContent>
-            <Typography variant="h5" color={"text.secondary"} gutterBottom>
+            <Typography variant="h6" color={"text.secondary"} gutterBottom>
               {sectionData.sectionTitle || `#${idx + 1}`}
             </Typography>
             <Divider />
@@ -77,7 +76,7 @@ export default function Page(props: PageProps) {
           sx={{ fontWeight: "light" }}
           padding={2}
           paragraph
-          variant="h4"
+          variant="h5"
           gutterBottom
         >
           {props.pageTitle}
