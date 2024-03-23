@@ -54,3 +54,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 - Changes to be commited in `main` branch.
 - Run `npm run deploy` to deploy distributable version of the code to prod, in the `gh-pages` branch.
+
+## Custom domain setup
+
+- As part of using the custom domain, "sri-ramana-teachings.com", the "homepage" property in package.json was modified from "https://rajatsan.github.io/ramana-darsanam" (original github-pages project site domain) to "http://sri-ramana-teachings.com".
+- Make sure the CNAME file is present in the public folder, and in the gh-pages branch in github.

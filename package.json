@@ -2,7 +2,7 @@
   "name": "ramana-darsanam",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rajatsan.github.io/ramana-darsanam",
+  "homepage": "http://sri-ramana-teachings.com",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
