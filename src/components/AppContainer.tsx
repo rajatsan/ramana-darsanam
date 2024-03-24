@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -14,9 +13,12 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import arunachalaImg from "./bhagavans-arunachala-colored.jpeg";
-import "./App.css";
-import Page from "./components/page/Page";
+import arunachalaImg from "../images/arunachala/bhagavans-arunachala-colored.jpeg";
+import Page from "../pages/Page";
+import IconButton from "@mui/material/IconButton";
+import Settings from "@mui/icons-material/Settings";
+
+import "../App.css";
 
 const drawerWidth = 240;
 
@@ -110,16 +112,24 @@ export default function ResponsiveDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            SRI RAMANA TEACHINGS
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant="h6" noWrap component="div">
+              SRI RAMANA TEACHINGS
+            </Typography>
+            <IconButton>
+              <Settings />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
+      <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -157,11 +167,10 @@ export default function ResponsiveDrawer() {
         sx={{
           flexGrow: 1,
           padding: isMobile ? 0 : 2,
-          paddingTop: 2,
+          paddingTop: isMobile ? 4 : 6,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar />
         <Page
           pageTitle="Nāṉ Ār? (Who am I?)"
           pageDataPath="collected_works/nan_yar.json"
