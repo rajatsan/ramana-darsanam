@@ -14,9 +14,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import arunachalaImg from "../images/arunachala/bhagavans-arunachala-colored.jpeg";
-import Page from "../pages/Page";
 import IconButton from "@mui/material/IconButton";
 import Settings from "@mui/icons-material/Settings";
+import AppRoutes from "./AppRoutes";
+import { BrowserRouter } from "react-router-dom";
 
 import "../App.css";
 
@@ -93,89 +94,88 @@ export default function ResponsiveDrawer() {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <AppBar
-        enableColorOnDark
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box
+    <BrowserRouter>
+      <Box sx={{ display: "flex" }}>
+        <AppBar
+          enableColorOnDark
+          position="fixed"
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+          }}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography variant="h6" noWrap component="div">
+                SRI RAMANA TEACHINGS
+              </Typography>
+              <IconButton>
+                <Settings />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onTransitionEnd={handleDrawerTransitionEnd}
+            onClose={handleDrawerClose}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
             sx={{
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "space-between",
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
             }}
           >
-            <Typography variant="h6" noWrap component="div">
-              SRI RAMANA TEACHINGS
-            </Typography>
-            <IconButton>
-              <Settings />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onTransitionEnd={handleDrawerTransitionEnd}
-          onClose={handleDrawerClose}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+            {drawer}
+          </Drawer>
+          <Drawer
+            variant="permanent"
+            sx={{
+              display: { xs: "none", sm: "block" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+            open
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+        <Box
+          component="main"
           sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
+            flexGrow: 1,
+            padding: isMobile ? 0 : 2,
+            paddingTop: isMobile ? 4 : 6,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
+          <AppRoutes />
+        </Box>
       </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          padding: isMobile ? 0 : 2,
-          paddingTop: isMobile ? 4 : 6,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        <Page
-          pageTitle="Nāṉ Ār? (Who am I?)"
-          pageDataPath="collected_works/nan_yar.json"
-        />
-      </Box>
-    </Box>
+    </BrowserRouter>
   );
 }
