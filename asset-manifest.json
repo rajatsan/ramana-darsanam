@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.56bbd525.css",
-    "main.js": "/static/js/main.423600f4.js",
+    "main.js": "/static/js/main.d1343919.js",
     "static/js/453.152dd00a.chunk.js": "/static/js/453.152dd00a.chunk.js",
     "static/media/bhagavans-arunachala-colored.jpeg": "/static/media/bhagavans-arunachala-colored.ba4c6f2842df8ac48eb7.jpeg",
     "static/media/roboto-latin-500-normal.woff2": "/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
@@ -62,11 +62,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/index.html",
     "main.56bbd525.css.map": "/static/css/main.56bbd525.css.map",
-    "main.423600f4.js.map": "/static/js/main.423600f4.js.map",
+    "main.d1343919.js.map": "/static/js/main.d1343919.js.map",
     "453.152dd00a.chunk.js.map": "/static/js/453.152dd00a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.56bbd525.css",
-    "static/js/main.423600f4.js"
+    "static/js/main.d1343919.js"
   ]
 }
