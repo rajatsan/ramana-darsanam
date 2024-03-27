@@ -5,3 +5,11 @@
   left: 0;
   right: 0;
 }
+
+.link {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

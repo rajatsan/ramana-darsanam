@@ -84,7 +84,7 @@ export default function Page(props: PageProps) {
 
   const renderHeader = () => {
     return (
-      <Box pb={2}>
+      <Box pb={2} px={6}>
         <Typography
           sx={{ fontWeight: "bold" }}
           padding={2}
@@ -103,9 +103,9 @@ export default function Page(props: PageProps) {
   };
 
   return (
-    <div>
+    <Box>
       {renderHeader()}
       {renderSections()}
-    </div>
+    </Box>
   );
 }
