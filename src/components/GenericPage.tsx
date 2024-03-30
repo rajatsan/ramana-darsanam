@@ -6,6 +6,8 @@ import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 
+import "../App.css";
+
 interface PageProps {
   pageDataPath: string;
   pageTitle: string;
@@ -23,10 +25,11 @@ interface PageData {
   sections: SectionData[];
 }
 
-// TODO
-// 1. Load all json files into single file
-// 2. Accordion for Tamil text
-// 3. Render HTML inside section
+const sectionsToRender = [
+  "tamilOriginal",
+  "romanTransliteration",
+  "englishTranslation",
+];
 
 export default function Page(props: PageProps) {
   const [pageData, setPageData] = useState<PageData | undefined>(undefined);
@@ -44,38 +47,29 @@ export default function Page(props: PageProps) {
     return pageData?.sections?.map((sectionData, idx) => {
       return (
         <Card sx={{ marginBottom: 2 }} key={idx}>
-          <CardContent>
+          <CardContent
+            className="generic-page-card-content"
+            id="generic-page-card-content"
+          >
             <Typography variant="h6" color={"text.secondary"} gutterBottom>
               {sectionData.sectionTitle || `#${idx + 1}`}
             </Typography>
             <Divider />
-            {sectionData.tamilOriginal && (
-              <Box my={2}>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: sectionData.tamilOriginal,
-                  }}
-                />
-              </Box>
-            )}
-            {sectionData.romanTransliteration && (
-              <Box my={2}>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: sectionData.romanTransliteration,
-                  }}
-                />
-              </Box>
-            )}
-            {sectionData.englishTranslation && (
-              <Box>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: sectionData.englishTranslation,
-                  }}
-                />
-              </Box>
-            )}
+            {sectionsToRender.map((sectionType) => {
+              if (sectionData[sectionType as keyof SectionData]) {
+                return (
+                  <Box key={sectionType} my={2}>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: sectionData[sectionType as keyof SectionData],
+                      }}
+                    />
+                  </Box>
+                );
+              } else {
+                return null;
+              }
+            })}
           </CardContent>
         </Card>
       );

@@ -13,3 +13,7 @@
     text-decoration: underline;
   }
 }
+
+#generic-page-card-content.generic-page-card-content {
+  padding-bottom: 0px;
+}
