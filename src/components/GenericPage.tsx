@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
+import { SECTION_TYPES_CONFIG } from "../constants";
 
 import "../App.css";
 
@@ -28,7 +29,12 @@ interface PageData {
 const sectionsToRender = [
   "tamilOriginal",
   "romanTransliteration",
+  "பதச்சேதம்",
+  "Padacchēdam",
+  "அன்வயம்",
+  "Anvayam",
   "englishTranslation",
+  "explanatoryParaphrase",
 ];
 
 export default function Page(props: PageProps) {
@@ -36,11 +42,55 @@ export default function Page(props: PageProps) {
 
   useEffect(() => {
     fetchPageData();
-  }, []);
+  }, [props.pageTitle]);
 
   const fetchPageData = async () => {
     const pageData = await fetch(`${props.pageDataPath}`);
     setPageData(await pageData.json());
+  };
+
+  const renderSection = (sectionData: SectionData, sectionType: string) => {
+    if (sectionData[sectionType as keyof SectionData]) {
+      return (
+        <Box key={sectionType} my={2}>
+          {renderSectionTitle(sectionType)}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: sectionData[sectionType as keyof SectionData],
+            }}
+          />
+        </Box>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const renderSectionTitle = (sectionType: string) => {
+    if (!SECTION_TYPES_CONFIG[sectionType]?.shouldDisplaySectionName)
+      return null;
+
+    const sectionDesc = SECTION_TYPES_CONFIG[sectionType].sectionDesc;
+    const sectionName = SECTION_TYPES_CONFIG[sectionType].sectionName;
+
+    if (!sectionDesc) {
+      return (
+        <span>
+          <em>
+            <b>{sectionName}: </b>
+          </em>
+        </span>
+      );
+    } else {
+      return (
+        <span>
+          <em>
+            <b>{sectionName} </b>
+          </em>
+          ({sectionDesc}): <span> </span>
+        </span>
+      );
+    }
   };
 
   const renderSections = () => {
@@ -55,21 +105,9 @@ export default function Page(props: PageProps) {
               {sectionData.sectionTitle || `#${idx + 1}`}
             </Typography>
             <Divider />
-            {sectionsToRender.map((sectionType) => {
-              if (sectionData[sectionType as keyof SectionData]) {
-                return (
-                  <Box key={sectionType} my={2}>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: sectionData[sectionType as keyof SectionData],
-                      }}
-                    />
-                  </Box>
-                );
-              } else {
-                return null;
-              }
-            })}
+            {sectionsToRender.map((sectionType) =>
+              renderSection(sectionData, sectionType),
+            )}
           </CardContent>
         </Card>
       );

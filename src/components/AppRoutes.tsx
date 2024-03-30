@@ -16,6 +16,15 @@ export default function AppRoutes() {
           />
         }
       />
+      <Route
+        path="ulladu-narpadu"
+        element={
+          <GenericPage
+            pageTitle="Uḷḷadu Nāṟpadu (Forty Verses on What Exists)"
+            pageDataPath="collected_works/ulladu_narpadu.json"
+          />
+        }
+      />
     </Routes>
   );
 }

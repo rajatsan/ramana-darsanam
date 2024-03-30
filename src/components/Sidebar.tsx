@@ -24,7 +24,7 @@ const TOP_LINKS = [
   },
   {
     header: "Uḷḷadu Nāṟpadu (Forty Verses on What Exists)",
-    link: "/nan-yar",
+    link: "/ulladu-narpadu",
   },
 ];
 
