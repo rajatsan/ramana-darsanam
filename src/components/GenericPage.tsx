@@ -96,7 +96,7 @@ export default function Page(props: PageProps) {
   const renderSections = () => {
     return pageData?.sections?.map((sectionData, idx) => {
       return (
-        <Card raised sx={{ marginBottom: 2 }} key={idx}>
+        <Card raised sx={{ marginBottom: 2 }} key={idx} square>
           <CardContent
             className="generic-page-card-content"
             id="generic-page-card-content"

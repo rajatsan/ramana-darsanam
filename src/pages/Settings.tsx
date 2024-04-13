@@ -4,13 +4,11 @@ import {
   Box,
   Card,
   CardContent,
-  Divider,
   FormControl,
   InputLabel,
   MenuItem,
   PaletteMode,
   Select,
-  Typography,
 } from "@mui/material";
 import { ThemeContext } from "../context";
 
@@ -28,11 +26,9 @@ function ThemeSetting() {
   return (
     <Card variant="elevation" elevation={3}>
       <CardContent>
-        <Typography variant="h6">Change theme</Typography>
-        <Divider />
         <Box marginTop={2}>
           <FormControl fullWidth size="small">
-            <InputLabel>Theme</InputLabel>
+            <InputLabel>Change theme</InputLabel>
             <Select
               value={theme}
               label="Theme"
