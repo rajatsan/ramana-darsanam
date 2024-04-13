@@ -1,17 +1,16 @@
 import React from "react";
 
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
+import Settings from "@mui/icons-material/Settings";
 
 import arunachalaImg from "../images/arunachala/bhagavans-arunachala-colored.jpeg";
-import Link from "./common/Link";
+import { useNavigate } from "react-router-dom";
 
 const TOP_LINKS = [
   {
@@ -29,6 +28,8 @@ const TOP_LINKS = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Toolbar>
@@ -41,19 +42,25 @@ export default function Sidebar() {
       <Divider />
       <List>
         {TOP_LINKS.map(({ link, header }) => (
-          <ListItem key={header}>
-            <Link to={link} header={header} />
+          <ListItem key={header} disablePadding onClick={() => navigate(link)}>
+            <ListItemButton>
+              <ListItemText primary={header} />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>
 
       <Divider />
       <List>
-        {["Others"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {["Settings"].map((text, index) => (
+          <ListItem
+            key={text}
+            disablePadding
+            onClick={() => navigate("/settings")}
+          >
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <Settings />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>

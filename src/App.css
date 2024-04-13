@@ -6,6 +6,10 @@
   right: 0;
 }
 
+.bhagavan-img-toolbar {
+  width: 60px;
+}
+
 .link {
   cursor: pointer;
 
@@ -16,4 +20,8 @@
 
 #generic-page-card-content.generic-page-card-content {
   padding-bottom: 0px;
+}
+
+#app-toolbar {
+  padding-right: 0px;
 }

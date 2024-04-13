@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import GenericPage from "./GenericPage";
 import Home from "./Home";
+import Settings from "../pages/Settings";
 
 export default function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ export default function AppRoutes() {
           />
         }
       />
+      <Route path="settings" element={<Settings />} />
     </Routes>
   );
 }

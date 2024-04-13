@@ -7,9 +7,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Settings from "@mui/icons-material/Settings";
 import AppRoutes from "./AppRoutes";
 import { useNavigate } from "react-router-dom";
+
+import bhagavanImg from "../images/arunachala/Bhagavans-Bust-with-green-background-resized.jpg";
 
 import "../App.css";
 import Sidebar from "./Sidebar";
@@ -50,14 +51,13 @@ export default function ResponsiveDrawer() {
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar
-        enableColorOnDark
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar id="app-toolbar">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -84,9 +84,11 @@ export default function ResponsiveDrawer() {
             >
               SRI RAMANA TEACHINGS
             </Typography>
-            <IconButton>
-              <Settings />
-            </IconButton>
+            <img
+              className="bhagavan-img-toolbar"
+              src={bhagavanImg}
+              alt="Bhagavan's bust with green background"
+            />
           </Box>
         </Toolbar>
       </AppBar>
