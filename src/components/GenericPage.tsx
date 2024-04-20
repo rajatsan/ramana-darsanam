@@ -27,12 +27,12 @@ interface PageData {
 }
 
 const sectionsToRender = [
-  "tamilOriginal",
+  // "tamilOriginal",
   "romanTransliteration",
-  "பதச்சேதம்",
-  "Padacchēdam",
-  "அன்வயம்",
-  "Anvayam",
+  // "பதச்சேதம்",
+  // "Padacchēdam",
+  // "அன்வயம்",
+  // "Anvayam",
   "englishTranslation",
   "explanatoryParaphrase",
 ];
