@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import GenericPage from "./GenericPage";
-import Home from "./Home";
 import Settings from "../pages/Settings";
+import Home from "../pages/Home";
 
 export default function AppRoutes() {
   return (

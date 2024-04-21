@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { indigo } from "@mui/material/colors";
 
 import AppContainer from "./components/AppContainer";
-import { ThemeContext } from "./context";
+import { ThemeContext, AppContext } from "./context";
 import { PaletteMode } from "@mui/material";
 
 const getTheme = (theme: PaletteMode) => {
@@ -20,6 +20,18 @@ const getTheme = (theme: PaletteMode) => {
 };
 
 function App() {
+  const [width, setWidth] = React.useState<number>(window.innerWidth);
+  const isMobile = width <= 768;
+
+  const handleWindowSizeChange = () => setWidth(window.innerWidth);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   const getUserTheme = () => {
     const themeFromLocalStorage = localStorage.getItem("theme");
     return (themeFromLocalStorage || "light") as PaletteMode;
@@ -34,14 +46,16 @@ function App() {
   const themeContextValue = { theme, setTheme: updateUserTheme };
 
   return (
-    <ThemeContext.Provider value={themeContextValue}>
-      <ThemeProvider theme={getTheme(theme)}>
-        <CssBaseline />
-        <div className="App">
-          <AppContainer />
-        </div>
-      </ThemeProvider>
-    </ThemeContext.Provider>
+    <AppContext.Provider value={{ isMobile }}>
+      <ThemeContext.Provider value={themeContextValue}>
+        <ThemeProvider theme={getTheme(theme)}>
+          <CssBaseline />
+          <div className="App">
+            <AppContainer />
+          </div>
+        </ThemeProvider>
+      </ThemeContext.Provider>
+    </AppContext.Provider>
   );
 }
 

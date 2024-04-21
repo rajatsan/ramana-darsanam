@@ -14,29 +14,21 @@ import bhagavanImg from "../images/arunachala/Bhagavans-Bust-with-green-backgrou
 
 import "../App.css";
 import Sidebar from "./Sidebar";
+import { useContext } from "react";
+import { AppContext } from "../context";
 
 const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const [width, setWidth] = React.useState<number>(window.innerWidth); // TODO move to react app context
-  const isMobile = width <= 768;
+  const { isMobile } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
   };
-
-  const handleWindowSizeChange = () => setWidth(window.innerWidth);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
 
   const handleDrawerTransitionEnd = () => {
     setIsClosing(false);

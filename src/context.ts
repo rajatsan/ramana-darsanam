@@ -5,3 +5,7 @@ export const ThemeContext = createContext({
   theme: "dark",
   setTheme: (newTheme: PaletteMode) => {},
 });
+
+export const AppContext = createContext({
+  isMobile: true,
+});
