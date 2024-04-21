@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Divider from "@mui/material/Divider";
+
 import Box from "@mui/material/Box";
-import { SECTION_TYPES_CONFIG } from "../constants";
 
 import "../App.css";
+import { GenericSection } from "./GenericSection";
 
 interface PageProps {
   pageDataPath: string;
   pageTitle: string;
 }
 
-interface SectionData {
+export interface SectionData {
   tamilOriginal: string;
   romanTransliteration: string;
   englishTranslation: string;
@@ -25,17 +23,6 @@ interface PageData {
   header: string;
   sections: SectionData[];
 }
-
-const sectionsToRender = [
-  // "tamilOriginal",
-  "romanTransliteration",
-  // "பதச்சேதம்",
-  // "Padacchēdam",
-  // "அன்வயம்",
-  // "Anvayam",
-  "englishTranslation",
-  "explanatoryParaphrase",
-];
 
 export default function Page(props: PageProps) {
   const [pageData, setPageData] = useState<PageData | undefined>(undefined);
@@ -49,68 +36,9 @@ export default function Page(props: PageProps) {
     setPageData(await pageData.json());
   };
 
-  const renderSection = (sectionData: SectionData, sectionType: string) => {
-    if (sectionData[sectionType as keyof SectionData]) {
-      return (
-        <Box key={sectionType} my={2}>
-          {renderSectionTitle(sectionType)}
-          <span
-            dangerouslySetInnerHTML={{
-              __html: sectionData[sectionType as keyof SectionData],
-            }}
-          />
-        </Box>
-      );
-    } else {
-      return null;
-    }
-  };
-
-  const renderSectionTitle = (sectionType: string) => {
-    if (!SECTION_TYPES_CONFIG[sectionType]?.shouldDisplaySectionName)
-      return null;
-
-    const sectionDesc = SECTION_TYPES_CONFIG[sectionType].sectionDesc;
-    const sectionName = SECTION_TYPES_CONFIG[sectionType].sectionName;
-
-    if (!sectionDesc) {
-      return (
-        <span>
-          <em>
-            <b>{sectionName}: </b>
-          </em>
-        </span>
-      );
-    } else {
-      return (
-        <span>
-          <em>
-            <b>{sectionName} </b>
-          </em>
-          ({sectionDesc}): <span> </span>
-        </span>
-      );
-    }
-  };
-
   const renderSections = () => {
     return pageData?.sections?.map((sectionData, idx) => {
-      return (
-        <Card raised sx={{ marginBottom: 2 }} key={idx} square>
-          <CardContent
-            className="generic-page-card-content"
-            id="generic-page-card-content"
-          >
-            <Typography variant="h6" color={"text.secondary"} gutterBottom>
-              {sectionData.sectionTitle || `#${idx + 1}`}
-            </Typography>
-            <Divider />
-            {sectionsToRender.map((sectionType) =>
-              renderSection(sectionData, sectionType),
-            )}
-          </CardContent>
-        </Card>
-      );
+      return <GenericSection key={idx} idx={idx} sectionData={sectionData} />;
     });
   };
 
