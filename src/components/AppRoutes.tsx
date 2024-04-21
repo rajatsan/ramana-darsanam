@@ -3,35 +3,36 @@ import { Route, Routes } from "react-router-dom";
 import GenericPage from "./GenericPage";
 import Settings from "../pages/Settings";
 import Home from "../pages/Home";
+import { UPADESA_CONFIG } from "../constants";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route
-        path="nan-yar"
+        path={UPADESA_CONFIG[0].pageRoute}
         element={
           <GenericPage
-            pageTitle="Nāṉ Ār? (Who am I?)"
-            pageDataPath="collected_works/nan_yar.json"
+            pageTitle={UPADESA_CONFIG[0].title}
+            pageDataPath={UPADESA_CONFIG[0].pageDataPath}
           />
         }
       />
       <Route
-        path="ulladu-narpadu"
+        path={UPADESA_CONFIG[1].pageRoute}
         element={
           <GenericPage
-            pageTitle="Uḷḷadu Nāṟpadu (Forty Verses on What Exists)"
-            pageDataPath="collected_works/ulladu_narpadu.json"
+            pageTitle={UPADESA_CONFIG[1].title}
+            pageDataPath={UPADESA_CONFIG[1].pageDataPath}
           />
         }
       />
       <Route
-        path="upadesa-undiyar"
+        path={UPADESA_CONFIG[2].pageRoute}
         element={
           <GenericPage
-            pageTitle="Upadēśa-v-Undiyār (Teachings in an Undiyār Song of Thirty Verses)"
-            pageDataPath="collected_works/upadesa_undiyar.json"
+            pageTitle={UPADESA_CONFIG[2].title}
+            pageDataPath={UPADESA_CONFIG[2].pageDataPath}
           />
         }
       />

@@ -12,21 +12,7 @@ import Home from "@mui/icons-material/Home";
 
 import arunachalaImg from "../images/arunachala/bhagavans-arunachala-colored.jpeg";
 import { useNavigate } from "react-router-dom";
-
-const TOP_LINKS = [
-  {
-    header: "Nāṉ Ār? (Who am I?)",
-    link: "/nan-yar",
-  },
-  {
-    header: "Upadēśa Undiyār (The Essence of Spiritual Instructions)",
-    link: "/upadesa-undiyar",
-  },
-  {
-    header: "Uḷḷadu Nāṟpadu (Forty Verses on What Exists)",
-    link: "/ulladu-narpadu",
-  },
-];
+import { UPADESA_CONFIG } from "../constants";
 
 const MID_LINKS = [
   {
@@ -48,17 +34,7 @@ export default function Sidebar() {
         />
       </Toolbar>
       <Divider />
-      <List>
-        {TOP_LINKS.map(({ link, header }) => (
-          <ListItem key={header} disablePadding onClick={() => navigate(link)}>
-            <ListItemButton>
-              <ListItemText primary={header} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
 
-      <Divider />
       <List>
         {MID_LINKS.map(({ link, header }) => (
           <ListItem key={header} disablePadding onClick={() => navigate(link)}>
@@ -71,6 +47,22 @@ export default function Sidebar() {
           </ListItem>
         ))}
       </List>
+      <Divider />
+
+      <List>
+        {UPADESA_CONFIG.map(({ pageRoute, title }) => (
+          <ListItem
+            key={title}
+            disablePadding
+            onClick={() => navigate(pageRoute)}
+          >
+            <ListItemButton>
+              <ListItemText primary={title} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+
       <Divider />
       <List>
         {["Settings"].map((text, index) => (

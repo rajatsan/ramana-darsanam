@@ -6,22 +6,11 @@ import Box from "@mui/material/Box";
 
 import "../App.css";
 import { GenericSection } from "./GenericSection";
+import { PageData } from "../types";
 
 interface PageProps {
   pageDataPath: string;
   pageTitle: string;
-}
-
-export interface SectionData {
-  tamilOriginal: string;
-  romanTransliteration: string;
-  englishTranslation: string;
-  sectionTitle: string;
-}
-
-interface PageData {
-  header: string;
-  sections: SectionData[];
 }
 
 export default function Page(props: PageProps) {
@@ -38,7 +27,7 @@ export default function Page(props: PageProps) {
 
   const renderSections = () => {
     return pageData?.sections?.map((sectionData, idx) => {
-      return <GenericSection key={idx} idx={idx} sectionData={sectionData} />;
+      return <GenericSection key={idx} index={idx} sectionData={sectionData} />;
     });
   };
 

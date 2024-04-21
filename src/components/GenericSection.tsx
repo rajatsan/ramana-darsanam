@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, Typography, Divider } from "@mui/material";
 import React from "react";
 import { SECTION_TYPES_CONFIG } from "../constants";
-import { SectionData } from "./GenericPage";
+import { SectionData } from "../types";
 
 const sectionsToRender = [
   // "tamilOriginal",
@@ -15,16 +15,21 @@ const sectionsToRender = [
 ];
 
 interface GenericSectionProps {
-  idx: number;
+  index: number;
   sectionData: SectionData;
+  sectionHeaderPrefix?: string;
 }
 
-export function GenericSection({ idx, sectionData }: GenericSectionProps) {
+export function GenericSection({
+  index,
+  sectionData,
+  sectionHeaderPrefix,
+}: GenericSectionProps) {
   const renderSection = (sectionData: SectionData, sectionType: string) => {
     if (sectionData[sectionType as keyof SectionData]) {
       return (
         <Box key={sectionType} my={2}>
-          {renderSectionTitle(sectionType)}
+          {renderSubsectionTitle(sectionType)}
           <span
             dangerouslySetInnerHTML={{
               __html: sectionData[sectionType as keyof SectionData],
@@ -37,7 +42,7 @@ export function GenericSection({ idx, sectionData }: GenericSectionProps) {
     }
   };
 
-  const renderSectionTitle = (sectionType: string) => {
+  const renderSubsectionTitle = (sectionType: string) => {
     if (!SECTION_TYPES_CONFIG[sectionType]?.shouldDisplaySectionName)
       return null;
 
@@ -64,14 +69,26 @@ export function GenericSection({ idx, sectionData }: GenericSectionProps) {
     }
   };
 
+  const renderSectionTitle = () => {
+    if (sectionHeaderPrefix) {
+      return (
+        sectionHeaderPrefix +
+        ", " +
+        sectionData.sectionTitle.toLocaleLowerCase()
+      );
+    } else {
+      return sectionData.sectionTitle || `#${index + 1}`;
+    }
+  };
+
   return (
-    <Card raised sx={{ marginBottom: 2 }} key={idx} square>
+    <Card raised sx={{ marginBottom: 2 }} key={index} square>
       <CardContent
         className="generic-page-card-content"
         id="generic-page-card-content"
       >
         <Typography variant="h6" color={"text.secondary"} gutterBottom>
-          {sectionData.sectionTitle || `#${idx + 1}`}
+          {renderSectionTitle()}
         </Typography>
         <Divider />
         {sectionsToRender.map((sectionType) =>
