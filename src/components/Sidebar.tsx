@@ -19,7 +19,7 @@ const TOP_LINKS = [
   },
   {
     header: "Upadēśa Undiyār (The Essence of Spiritual Instructions)",
-    link: "/nan-yar",
+    link: "/upadesa-undiyar",
   },
   {
     header: "Uḷḷadu Nāṟpadu (Forty Verses on What Exists)",

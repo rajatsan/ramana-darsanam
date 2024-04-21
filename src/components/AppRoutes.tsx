@@ -26,6 +26,15 @@ export default function AppRoutes() {
           />
         }
       />
+      <Route
+        path="upadesa-undiyar"
+        element={
+          <GenericPage
+            pageTitle="Upadēśa-v-Undiyār (Teachings in an Undiyār Song of Thirty Verses)"
+            pageDataPath="collected_works/upadesa_undiyar.json"
+          />
+        }
+      />
       <Route path="settings" element={<Settings />} />
     </Routes>
   );
