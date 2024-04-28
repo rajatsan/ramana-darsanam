@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { Box, Typography } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import { AppContext } from "../context";
 import { PageData } from "../types";
-import { GenericSection } from "../components/GenericSection";
+import { GenericSection } from "../common/GenericSection";
 import { UPADESA_CONFIG } from "../constants";
 
 function daysSinceEpoch() {
@@ -38,7 +38,7 @@ function UpadesaWorks() {
         paddingLeft={1}
         paddingBottom={2}
         variant="h6"
-      >{`Today's Upadesa`}</Typography>
+      >{`Upadēśa Nūṉmālai`}</Typography>
       <Box>
         {UPADESA_CONFIG.map((config) => (
           <HomePageSection
