@@ -7,7 +7,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+// import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Settings from "@mui/icons-material/Settings";
 import Home from "@mui/icons-material/Home";
 
@@ -66,7 +66,7 @@ export default function Sidebar() {
 
       <Divider />
       <List>
-        <ListItem
+        {/* <ListItem
           key={"Miscellanous"}
           disablePadding
           onClick={() => navigate("/miscellanous")}
@@ -77,7 +77,7 @@ export default function Sidebar() {
             </ListItemIcon>
             <ListItemText primary={"Miscellanous"} />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
 
         <ListItem
           key={"Settings"}

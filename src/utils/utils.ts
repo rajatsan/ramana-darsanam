@@ -2,6 +2,7 @@
 export async function getRandomVideosFromChannel(
   channelId: string,
   apiKey: string,
+  uploadsPlaylistId: string = "UUcBAcvXQJBln18moeDpz4iQ", // Playlist id for all uploads playlist
   count: number = 3,
 ) {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -21,19 +22,12 @@ export async function getRandomVideosFromChannel(
   };
 
   try {
-    // Fetch channel's uploads playlist
-    const channelResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`,
-    );
-    const channelData = await channelResponse.json();
-    const uploadsPlaylistId =
-      channelData.items[0].contentDetails.relatedPlaylists.uploads;
-
     // Fetch videos from the uploads playlist
     const playlistItemsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&key=${apiKey}`,
     );
     const playlistItemsData = await playlistItemsResponse.json();
+    console.log("got data", playlistItemsData);
 
     return Array.from(Array(5)).map(() => getVideo(playlistItemsData));
   } catch (error) {
@@ -41,17 +35,3 @@ export async function getRandomVideosFromChannel(
     return null;
   }
 }
-
-// Example usage
-const channelId = "YOUR_CHANNEL_ID"; // Replace with your channel ID
-const apiKey = "YOUR_API_KEY"; // Replace with your API key
-
-getRandomVideosFromChannel(channelId, apiKey)
-  .then((video) => {
-    if (video) {
-      console.log("got videos, ", video);
-    } else {
-      console.log("Failed to fetch a random video.");
-    }
-  })
-  .catch((error) => console.error("Error:", error));

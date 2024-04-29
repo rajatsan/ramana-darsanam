@@ -6,6 +6,7 @@ import {
   AccordionDetails,
   AccordionSummary,
 } from "../common/CustomAccordionComponents";
+import YoutubeSuggestions from "../components/YoutubeSuggestions";
 
 export default function Miscellanous() {
   return (
@@ -30,12 +31,10 @@ function OthersSection() {
         onChange={handleChange("panel1")}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>
-            {`Random video suggestions from Michael James' Youtube channel`}
-          </Typography>
+          <Typography>{`Random video suggestions`}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Coming soon</Typography>
+          <YoutubeSuggestions />
         </AccordionDetails>
       </Accordion>
     </div>

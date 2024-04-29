@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import GenericPage from "../common/GenericPage";
 import Settings from "../pages/Settings";
 import Home from "../pages/Home";
-import Miscellanous from "../pages/Miscellanous";
+// import Miscellanous from "../pages/Miscellanous";
 import { UPADESA_CONFIG } from "../constants";
 
 export default function AppRoutes() {
@@ -38,7 +38,7 @@ export default function AppRoutes() {
         }
       />
       <Route path="settings" element={<Settings />} />
-      <Route path="miscellanous" element={<Miscellanous />} />
+      {/* <Route path="miscellanous" element={<Miscellanous />} /> */}
     </Routes>
   );
 }
